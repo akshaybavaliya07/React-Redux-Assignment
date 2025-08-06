@@ -36,7 +36,7 @@ const TodoList = () => {
             </div>
             <button
               onClick={() => dispatch(deleteTask(index))}
-              className="bg-rose-500 text-white px-4 py-2 rounded-lg hover:bg-rose-600 transition"
+              className="bg-rose-500 text-white px-4 py-2 rounded-lg cursor-pointer hover:bg-rose-600 transition"
             >
               Delete
             </button>

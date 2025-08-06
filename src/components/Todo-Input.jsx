@@ -31,7 +31,7 @@ const TodoInput = () => {
       />
       <button
         onClick={handleAdd}
-        className="bg-purple-500 text-white px-5 py-2.5 rounded-xl shadow hover:bg-purple-400 transition font-medium"
+        className="bg-purple-500 text-white px-5 py-2.5 rounded-xl cursor-pointer shadow hover:bg-purple-400 transition font-medium"
       >
         Save Task
       </button>
