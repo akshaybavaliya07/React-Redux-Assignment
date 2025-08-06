@@ -12,6 +12,7 @@ const Github = () => {
   const fetchUser = async () => {
     if (!username.trim()) {
       setError("Please enter a GitHub username");
+      setUserData(null);
       return;
     }
 
@@ -31,6 +32,11 @@ const Github = () => {
     }
   };
 
+  const handleInputChange = (e) => {
+    setUsername(e.target.value);
+    if (error) setError("");
+  };
+
   const submitHandler = (e) => {
     e.preventDefault();
     fetchUser();
@@ -47,23 +53,32 @@ const Github = () => {
           type="text"
           value={username}
           placeholder="Enter GitHub username..."
-          onChange={(e) => setUsername(e.target.value)}
+          onChange={handleInputChange}
           className="flex-1 px-4 py-2 bg-gray-700 text-white border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
         />
         <button
           type="submit"
+          disabled={loading}
           className="bg-teal-500 text-white px-4 py-2 rounded-lg hover:bg-teal-600 transition"
         >
           Search
         </button>
       </form>
 
+      {!userData && !loading && !error && (
+        <div className="mt-12 text-center text-gray-400">
+          <p className="text-lg">🔍 Search a GitHub user to get started.</p>
+        </div>
+      )}
+
       {loading && <Loader />}
+
       {error && (
         <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-2 rounded-md text-center mt-4">
           ⚠️ {error}
         </div>
       )}
+
       {userData && <GitHubCard user={userData} />}
     </div>
   );
